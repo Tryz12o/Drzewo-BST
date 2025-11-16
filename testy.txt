@@ -1,0 +1,24 @@
+cd /workspaces/Drzewo-BST && printf "1
+2
+1
+5
+1
+7
+1
+9
+1
+5
+1
+5
+1
+8
+1
+4
+5 
+2
+6
+1234.txt
+1
+2
+0
+" | ./main

@@ -51,7 +51,19 @@ int main() {
             case 6:
                 cout << "Nazwa pliku: ";
                 cin >> filename;
-                tree.saveToFile(filename);
+                cout << "Zapisz jako:\n1. Graficznie\n2. Traversal (pre/in/post)\nWybierz: ";
+                cin >> val;
+                if (val == 1) {
+                    cout << "Wybierz sposób (1-Preorder,2-Inorder,3-Postorder): ";
+                    cin >> choice;
+                    tree.saveToFile(filename, choice, true);
+                } else if (val == 2) {
+                    cout << "Wybierz traversal (1-Preorder,2-Inorder,3-Postorder): ";
+                    cin >> choice;
+                    tree.saveToFile(filename, choice, false);
+                } else {
+                    cout << "Anulowano zapis.\n";
+                }
                 break;
 
             case 0:

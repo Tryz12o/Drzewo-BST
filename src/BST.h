@@ -43,8 +43,10 @@ public:
     void findPath(int value);
 
     void displayGraphical(int mode); // 1-pre, 2-in, 3-post
+    void displayGraphicalToStream(int mode, ostream& out);
 
     void saveToFile(const string& filename);
+    void saveToFile(const string& filename, int mode, bool graphical);
 };
 
 #endif

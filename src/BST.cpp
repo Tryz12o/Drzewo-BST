@@ -136,12 +136,40 @@ void BST::saveToFile(shared_ptr<Node> node, ofstream& file) {
 }
 
 void BST::saveToFile(const string& filename) {
+    // default: save as preorder list
     ofstream file(filename);
     if (!file) {
         cerr << "Nie można otworzyć pliku!" << endl;
         return;
     }
     saveToFile(root, file);
+    file.close();
+    cout << "Zapisano do pliku: " << filename << endl;
+}
+
+void BST::saveToFile(const string& filename, int mode, bool graphical) {
+    ofstream file(filename);
+    if (!file) {
+        cerr << "Nie można otworzyć pliku!" << endl;
+        return;
+    }
+
+    if (graphical) {
+        // mode determines which traversal header to print (1-pre,2-in,3-post)
+        displayGraphicalToStream(mode, file);
+    } else {
+        vector<int> trav;
+        if (mode == 1) preorderList(root, trav);
+        else if (mode == 2) inorderList(root, trav);
+        else if (mode == 3) postorderList(root, trav);
+
+        for (size_t i = 0; i < trav.size(); ++i) {
+            if (i) file << " ";
+            file << trav[i];
+        }
+        file << endl;
+    }
+
     file.close();
     cout << "Zapisano do pliku: " << filename << endl;
 }
@@ -165,43 +193,43 @@ void BST::displayGraphicalTree(shared_ptr<Node> node, int level, bool isLeft) {
 }
 
 void BST::displayGraphical(int mode) {
-    cout << "\n==== Drzewo graficzne ====" << endl;
+    displayGraphicalToStream(mode, cout);
+}
+
+// Helper: print graphical representation to any output stream
+void BST::displayGraphicalToStream(int mode, ostream& out) {
+    out << "\n==== Drzewo graficzne ====" << endl;
     if (!root) {
-        cout << "(puste drzewo)" << endl;
+        out << "(puste drzewo)" << endl;
         return;
     }
 
     vector<int> trav;
     if (mode == 1) {
         preorderList(root, trav);
-        cout << "Preorder: ";
+        out << "Preorder: ";
     } else if (mode == 2) {
         inorderList(root, trav);
-        cout << "Inorder: ";
+        out << "Inorder: ";
     } else if (mode == 3) {
         postorderList(root, trav);
-        cout << "Postorder: ";
+        out << "Postorder: ";
     } else {
-        cout << "Traversale: ";
+        out << "Traversale: ";
     }
 
     for (size_t i = 0; i < trav.size(); ++i) {
-        if (i) cout << " ";
-        cout << trav[i];
+        if (i) out << " ";
+        out << trav[i];
     }
-    cout << endl << endl;
+    out << endl << endl;
 
     // Print tree top-down with horizontal spacing.
-    // We'll compute inorder-based x positions to spread nodes horizontally,
-    // then render rows where each node is placed at column = x * spacing.
-
-    // compute positions (inorder x) and depths
     unordered_map<Node*, pair<int,int>> pos; // Node* -> (x, depth)
     unordered_map<Node*, int> centerX; // Node* -> center column (for connector placement)
     int curX = 0;
     int maxDepth = 0;
 
-    // inorder assignment to get depths
     function<void(shared_ptr<Node>, int)> computePos = [&](shared_ptr<Node> n, int depth) {
         if (!n) return;
         computePos(n->left, depth + 1);
@@ -214,11 +242,8 @@ void BST::displayGraphical(int mode) {
 
     if (pos.empty()) return;
 
-    // Compute centers using parent-relative positioning:
-    // Left child center = parent center - spacing
-    // Right child center = parent center + spacing
-    int spacing = 2; // horizontal spacing between left and right children (1-2 chars)
-    int rootCenter = 20; // arbitrary starting center
+    int spacing = 2;
+    int rootCenter = 20;
     centerX[root.get()] = rootCenter;
 
     function<void(shared_ptr<Node>)> computeCenters = [&](shared_ptr<Node> n) {
@@ -236,22 +261,19 @@ void BST::displayGraphical(int mode) {
 
     computeCenters(root);
 
-    // Shift all centers so minimum is >= padding
     int minCenter = std::numeric_limits<int>::max();
     for (auto &c : centerX) minCenter = min(minCenter, c.second);
     int padding = 2;
     int shift = (minCenter < padding) ? (padding - minCenter) : 0;
     for (auto &c : centerX) c.second += shift;
 
-    // compute width and height
     int maxCenter = 0;
     for (auto &c : centerX) maxCenter = max(maxCenter, c.second);
-    int width = maxCenter + padding + 5; // extra buffer
-    int height = maxDepth * 2 + 1; // node rows at depth*2, connector rows in between
+    int width = maxCenter + padding + 5;
+    int height = maxDepth * 2 + 1;
 
     vector<string> rows(height, string(width, ' '));
 
-    // place node values using centers
     for (auto &p : pos) {
         Node* nptr = p.first;
         int depth = p.second.second;
@@ -268,7 +290,6 @@ void BST::displayGraphical(int mode) {
         for (size_t k = 0; k < val.length(); ++k) rows[cy][start + k] = val[k];
     }
 
-    // draw connectors (single-char) above each child at its center column
     function<void(shared_ptr<Node>)> drawConnectors = [&](shared_ptr<Node> n) {
         if (!n) return;
         Node* p = n.get();
@@ -289,12 +310,11 @@ void BST::displayGraphical(int mode) {
 
     drawConnectors(root);
 
-    // print rows trimmed
     for (int r = 0; r < height; ++r) {
         string &line = rows[r];
         int end = (int)line.size() - 1;
         while (end >= 0 && line[end] == ' ') --end;
-        if (end < 0) cout << "\n";
-        else cout << line.substr(0, end + 1) << endl;
+        if (end < 0) out << "\n";
+        else out << line.substr(0, end + 1) << endl;
     }
 }
