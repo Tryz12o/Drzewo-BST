@@ -1,0 +1,21 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build-bst",
+            "type": "shell",
+            "command": "g++",
+            "args": [
+                "-std=c++17",
+                "*.cpp",
+                "-o",
+                "main"
+            ],
+            "options": {
+                "cwd": "/workspaces/Drzewo-BST/src"
+            },
+            "group": "build",
+            "problemMatcher": ["$gcc"]
+        }
+    ]
+}
