@@ -47,6 +47,13 @@ public:
 
     void saveToFile(const string& filename);
     void saveToFile(const string& filename, int mode, bool graphical);
+
+    // ==========================
+    // DODANE (potrzebne dla FileManager)
+    // ==========================
+    vector<int> inorderTraversal() const;
+    vector<int> preorderTraversal() const;
+    vector<int> postorderTraversal() const;
 };
 
 #endif
