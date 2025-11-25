@@ -1,0 +1,276 @@
+\doxysection{BST Class Reference}
+\hypertarget{classBST}{}\label{classBST}\index{BST@{BST}}
+
+
+Binary Search Tree implementation with comprehensive features.  
+
+
+
+
+{\ttfamily \#include $<$BST.\+h$>$}
+
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structBST_1_1Node}{Node}}
+\begin{DoxyCompactList}\small\item\em \doxylink{structBST_1_1Node}{Node} structure for the \doxylink{classBST}{BST}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classBST_abc17123a0367c3b8ad0382eeb3ad3178}\label{classBST_abc17123a0367c3b8ad0382eeb3ad3178} 
+{\bfseries BST} ()
+\begin{DoxyCompactList}\small\item\em Default constructor Initializes an empty \doxylink{classBST}{BST}. \end{DoxyCompactList}\item 
+\Hypertarget{classBST_aff9c7948fbba37844d2893b920ddc238}\label{classBST_aff9c7948fbba37844d2893b920ddc238} 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+BST} ()
+\begin{DoxyCompactList}\small\item\em Destructor Automatically clears all nodes. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classBST_a434822ba327e37a18db6e29a9aeabb08}{insert}} (int value)
+\begin{DoxyCompactList}\small\item\em Insert a new value into the \doxylink{classBST}{BST}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classBST_a5ecfaa5038e8b25a46300747b3d53f20}{remove}} (int value)
+\begin{DoxyCompactList}\small\item\em Remove a value from the \doxylink{classBST}{BST}. \end{DoxyCompactList}\item 
+\Hypertarget{classBST_ac4c25c29469df59a243c920423ed6d75}\label{classBST_ac4c25c29469df59a243c920423ed6d75} 
+void {\bfseries clear} ()
+\begin{DoxyCompactList}\small\item\em Clear all nodes from the \doxylink{classBST}{BST}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classBST_a9258e97cf11689dc8d9ab6bcee668a0d}{find\+Path}} (int value)
+\begin{DoxyCompactList}\small\item\em Find and display the path to a specific value. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classBST_a6b6c5f11ff277a9326e750c82c69dea1}{display\+Graphical}} (int mode)
+\begin{DoxyCompactList}\small\item\em Display the tree graphically in the console. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classBST_a397f0072516a5e34840bf6dfeadd917c}{display\+Graphical\+To\+Stream}} (int mode, ostream \&out)
+\begin{DoxyCompactList}\small\item\em Display the tree graphically to a stream. \end{DoxyCompactList}\item 
+\Hypertarget{classBST_a51394c7a9b52896618036109645505f3}\label{classBST_a51394c7a9b52896618036109645505f3} 
+void {\bfseries display\+Ascii} ()
+\begin{DoxyCompactList}\small\item\em Display the tree in ASCII format. \end{DoxyCompactList}\item 
+\Hypertarget{classBST_aa1f1783484dada56faeda924cb5f512b}\label{classBST_aa1f1783484dada56faeda924cb5f512b} 
+void {\bfseries display\+Ascii\+Centered} ()
+\begin{DoxyCompactList}\small\item\em Display the tree in ASCII format, centered. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classBST_a63708243c1281c87b8a53fff13929e52}{save\+To\+File}} (const string \&filename)
+\begin{DoxyCompactList}\small\item\em Save tree to text file in preorder format. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classBST_a326318f966af37b9535a79b634f1ccef}{save\+To\+File}} (const string \&filename, int mode, bool graphical)
+\begin{DoxyCompactList}\small\item\em Save tree to file with specific format. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classBST_aecb3e68a662e54565d8c4fe58487c419}{load\+From\+Text\+File}} (const string \&filename)
+\begin{DoxyCompactList}\small\item\em Load tree from text file. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classBST_ac515a9f67584fcd27c7ccb7d4ab80b63}{serialize\+Binary}} (const string \&filename)
+\begin{DoxyCompactList}\small\item\em Serialize tree to binary file. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classBST_ac886cf881eaecc051a49cae027e8db59}{deserialize\+Binary}} (const string \&filename)
+\begin{DoxyCompactList}\small\item\em Deserialize tree from binary file. \end{DoxyCompactList}\item 
+vector$<$ int $>$ \mbox{\hyperlink{classBST_a9449530b4e404a9431ba529d27707e30}{inorder\+Traversal}} () const
+\begin{DoxyCompactList}\small\item\em Get inorder traversal of the tree. \end{DoxyCompactList}\item 
+vector$<$ int $>$ \mbox{\hyperlink{classBST_ad2202f68ed9f21e713e07bb5c55724be}{preorder\+Traversal}} () const
+\begin{DoxyCompactList}\small\item\em Get preorder traversal of the tree. \end{DoxyCompactList}\item 
+vector$<$ int $>$ \mbox{\hyperlink{classBST_ab8626803f2fd5af26a2973f219008f18}{postorder\+Traversal}} () const
+\begin{DoxyCompactList}\small\item\em Get postorder traversal of the tree. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Binary Search Tree implementation with comprehensive features. 
+
+This class implements a Binary Search Tree (\doxylink{classBST}{BST}) with support for\+:
+\begin{DoxyItemize}
+\item Insertion and deletion of nodes
+\item Tree traversal (preorder, inorder, postorder)
+\item ASCII and graphical visualization
+\item Serialization to text and binary formats
+\item File I/O operations 
+\end{DoxyItemize}
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classBST_ac886cf881eaecc051a49cae027e8db59}\label{classBST_ac886cf881eaecc051a49cae027e8db59} 
+\index{BST@{BST}!deserializeBinary@{deserializeBinary}}
+\index{deserializeBinary@{deserializeBinary}!BST@{BST}}
+\doxysubsubsection{\texorpdfstring{deserializeBinary()}{deserializeBinary()}}
+{\footnotesize\ttfamily void BST\+::deserialize\+Binary (\begin{DoxyParamCaption}\item[{const string \&}]{filename }\end{DoxyParamCaption})}
+
+
+
+Deserialize tree from binary file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & The input binary filename \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classBST_a6b6c5f11ff277a9326e750c82c69dea1}\label{classBST_a6b6c5f11ff277a9326e750c82c69dea1} 
+\index{BST@{BST}!displayGraphical@{displayGraphical}}
+\index{displayGraphical@{displayGraphical}!BST@{BST}}
+\doxysubsubsection{\texorpdfstring{displayGraphical()}{displayGraphical()}}
+{\footnotesize\ttfamily void BST\+::display\+Graphical (\begin{DoxyParamCaption}\item[{int}]{mode }\end{DoxyParamCaption})}
+
+
+
+Display the tree graphically in the console. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mode} & Traversal mode (1=Preorder, 2=Inorder, 3=Postorder) \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classBST_a397f0072516a5e34840bf6dfeadd917c}\label{classBST_a397f0072516a5e34840bf6dfeadd917c} 
+\index{BST@{BST}!displayGraphicalToStream@{displayGraphicalToStream}}
+\index{displayGraphicalToStream@{displayGraphicalToStream}!BST@{BST}}
+\doxysubsubsection{\texorpdfstring{displayGraphicalToStream()}{displayGraphicalToStream()}}
+{\footnotesize\ttfamily void BST\+::display\+Graphical\+To\+Stream (\begin{DoxyParamCaption}\item[{int}]{mode,  }\item[{ostream \&}]{out }\end{DoxyParamCaption})}
+
+
+
+Display the tree graphically to a stream. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mode} & Traversal mode (1=Preorder, 2=Inorder, 3=Postorder) \\
+\hline
+{\em out} & Output stream \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classBST_a9258e97cf11689dc8d9ab6bcee668a0d}\label{classBST_a9258e97cf11689dc8d9ab6bcee668a0d} 
+\index{BST@{BST}!findPath@{findPath}}
+\index{findPath@{findPath}!BST@{BST}}
+\doxysubsubsection{\texorpdfstring{findPath()}{findPath()}}
+{\footnotesize\ttfamily void BST\+::find\+Path (\begin{DoxyParamCaption}\item[{int}]{value }\end{DoxyParamCaption})}
+
+
+
+Find and display the path to a specific value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & The value to search for \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classBST_a9449530b4e404a9431ba529d27707e30}\label{classBST_a9449530b4e404a9431ba529d27707e30} 
+\index{BST@{BST}!inorderTraversal@{inorderTraversal}}
+\index{inorderTraversal@{inorderTraversal}!BST@{BST}}
+\doxysubsubsection{\texorpdfstring{inorderTraversal()}{inorderTraversal()}}
+{\footnotesize\ttfamily vector$<$ int $>$ BST\+::inorder\+Traversal (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Get inorder traversal of the tree. 
+
+\begin{DoxyReturn}{Returns}
+Vector containing values in inorder sequence 
+\end{DoxyReturn}
+\Hypertarget{classBST_a434822ba327e37a18db6e29a9aeabb08}\label{classBST_a434822ba327e37a18db6e29a9aeabb08} 
+\index{BST@{BST}!insert@{insert}}
+\index{insert@{insert}!BST@{BST}}
+\doxysubsubsection{\texorpdfstring{insert()}{insert()}}
+{\footnotesize\ttfamily void BST\+::insert (\begin{DoxyParamCaption}\item[{int}]{value }\end{DoxyParamCaption})}
+
+
+
+Insert a new value into the \doxylink{classBST}{BST}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & The value to insert \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classBST_aecb3e68a662e54565d8c4fe58487c419}\label{classBST_aecb3e68a662e54565d8c4fe58487c419} 
+\index{BST@{BST}!loadFromTextFile@{loadFromTextFile}}
+\index{loadFromTextFile@{loadFromTextFile}!BST@{BST}}
+\doxysubsubsection{\texorpdfstring{loadFromTextFile()}{loadFromTextFile()}}
+{\footnotesize\ttfamily void BST\+::load\+From\+Text\+File (\begin{DoxyParamCaption}\item[{const string \&}]{filename }\end{DoxyParamCaption})}
+
+
+
+Load tree from text file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & The input filename \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classBST_ab8626803f2fd5af26a2973f219008f18}\label{classBST_ab8626803f2fd5af26a2973f219008f18} 
+\index{BST@{BST}!postorderTraversal@{postorderTraversal}}
+\index{postorderTraversal@{postorderTraversal}!BST@{BST}}
+\doxysubsubsection{\texorpdfstring{postorderTraversal()}{postorderTraversal()}}
+{\footnotesize\ttfamily vector$<$ int $>$ BST\+::postorder\+Traversal (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Get postorder traversal of the tree. 
+
+\begin{DoxyReturn}{Returns}
+Vector containing values in postorder sequence 
+\end{DoxyReturn}
+\Hypertarget{classBST_ad2202f68ed9f21e713e07bb5c55724be}\label{classBST_ad2202f68ed9f21e713e07bb5c55724be} 
+\index{BST@{BST}!preorderTraversal@{preorderTraversal}}
+\index{preorderTraversal@{preorderTraversal}!BST@{BST}}
+\doxysubsubsection{\texorpdfstring{preorderTraversal()}{preorderTraversal()}}
+{\footnotesize\ttfamily vector$<$ int $>$ BST\+::preorder\+Traversal (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Get preorder traversal of the tree. 
+
+\begin{DoxyReturn}{Returns}
+Vector containing values in preorder sequence 
+\end{DoxyReturn}
+\Hypertarget{classBST_a5ecfaa5038e8b25a46300747b3d53f20}\label{classBST_a5ecfaa5038e8b25a46300747b3d53f20} 
+\index{BST@{BST}!remove@{remove}}
+\index{remove@{remove}!BST@{BST}}
+\doxysubsubsection{\texorpdfstring{remove()}{remove()}}
+{\footnotesize\ttfamily void BST\+::remove (\begin{DoxyParamCaption}\item[{int}]{value }\end{DoxyParamCaption})}
+
+
+
+Remove a value from the \doxylink{classBST}{BST}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & The value to remove \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classBST_a63708243c1281c87b8a53fff13929e52}\label{classBST_a63708243c1281c87b8a53fff13929e52} 
+\index{BST@{BST}!saveToFile@{saveToFile}}
+\index{saveToFile@{saveToFile}!BST@{BST}}
+\doxysubsubsection{\texorpdfstring{saveToFile()}{saveToFile()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void BST\+::save\+To\+File (\begin{DoxyParamCaption}\item[{const string \&}]{filename }\end{DoxyParamCaption})}
+
+
+
+Save tree to text file in preorder format. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & The output filename \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classBST_a326318f966af37b9535a79b634f1ccef}\label{classBST_a326318f966af37b9535a79b634f1ccef} 
+\index{BST@{BST}!saveToFile@{saveToFile}}
+\index{saveToFile@{saveToFile}!BST@{BST}}
+\doxysubsubsection{\texorpdfstring{saveToFile()}{saveToFile()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void BST\+::save\+To\+File (\begin{DoxyParamCaption}\item[{const string \&}]{filename,  }\item[{int}]{mode,  }\item[{bool}]{graphical }\end{DoxyParamCaption})}
+
+
+
+Save tree to file with specific format. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & The output filename \\
+\hline
+{\em mode} & Traversal mode (1=Preorder, 2=Inorder, 3=Postorder) \\
+\hline
+{\em graphical} & If true, saves graphical representation \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classBST_ac515a9f67584fcd27c7ccb7d4ab80b63}\label{classBST_ac515a9f67584fcd27c7ccb7d4ab80b63} 
+\index{BST@{BST}!serializeBinary@{serializeBinary}}
+\index{serializeBinary@{serializeBinary}!BST@{BST}}
+\doxysubsubsection{\texorpdfstring{serializeBinary()}{serializeBinary()}}
+{\footnotesize\ttfamily void BST\+::serialize\+Binary (\begin{DoxyParamCaption}\item[{const string \&}]{filename }\end{DoxyParamCaption})}
+
+
+
+Serialize tree to binary file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & The output binary filename \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/BST.\+h\item 
+src/BST.\+cpp\end{DoxyCompactItemize}

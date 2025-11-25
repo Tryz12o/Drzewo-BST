@@ -1,0 +1,98 @@
+\doxysection{BST.\+h}
+\hypertarget{BST_8h_source}{}\label{BST_8h_source}\index{src/BST.h@{src/BST.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ BST\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ BST\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{00008\ \textcolor{keyword}{using\ namespace\ }std;}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00021\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classBST}{BST}}\ \{}
+\DoxyCodeLine{00022\ \textcolor{keyword}{public}:\ }
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structBST_1_1Node}{Node}}\ \{}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structBST_1_1Node_a53765287f96cb42379a807ad54afaf09}{value}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ shared\_ptr<Node>\ \mbox{\hyperlink{structBST_1_1Node_aa4118a0b1a6f43cbb93bd7028d44246e}{left}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ shared\_ptr<Node>\ \mbox{\hyperlink{structBST_1_1Node_a2de9a09fc3abba4cc39eaf3620f5c0b4}{right}};\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structBST_1_1Node_a6277000c402ae056048063348585886c}{Node}}(\textcolor{keywordtype}{int}\ val)\ :\ \mbox{\hyperlink{structBST_1_1Node_a53765287f96cb42379a807ad54afaf09}{value}}(val),\ \mbox{\hyperlink{structBST_1_1Node_aa4118a0b1a6f43cbb93bd7028d44246e}{left}}(nullptr),\ \mbox{\hyperlink{structBST_1_1Node_a2de9a09fc3abba4cc39eaf3620f5c0b4}{right}}(nullptr)\ \{\}}
+\DoxyCodeLine{00037\ \ \ \ \ \};}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00040\ \ \ \ \ shared\_ptr<Node>\ root;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{comment}{//\ Recursive\ insertion\ helper}}
+\DoxyCodeLine{00049\ \ \ \ \ shared\_ptr<Node>\ insert(shared\_ptr<Node>\ node,\ \textcolor{keywordtype}{int}\ value);}
+\DoxyCodeLine{00050\ \ \ \ \ }
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{comment}{//\ Recursive\ removal\ helper}}
+\DoxyCodeLine{00058\ \ \ \ \ shared\_ptr<Node>\ remove(shared\_ptr<Node>\ node,\ \textcolor{keywordtype}{int}\ value);}
+\DoxyCodeLine{00059\ \ \ \ \ }
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{comment}{//\ Find\ minimum\ node}}
+\DoxyCodeLine{00066\ \ \ \ \ shared\_ptr<Node>\ findMin(shared\_ptr<Node>\ node);}
+\DoxyCodeLine{00067\ \ \ \ \ }
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{comment}{//\ Clear\ recursive\ helper}}
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classBST_ac4c25c29469df59a243c920423ed6d75}{clear}}(shared\_ptr<Node>\&\ node);}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{comment}{//\ Traversal\ helpers}}
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keywordtype}{void}\ preorderList(shared\_ptr<Node>\ node,\ vector<int>\&\ out)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00082\ \ \ \ \ }
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keywordtype}{void}\ inorderList(shared\_ptr<Node>\ node,\ vector<int>\&\ out)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00089\ \ \ \ \ }
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keywordtype}{void}\ postorderList(shared\_ptr<Node>\ node,\ vector<int>\&\ out)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00104\ \ \ \ \ \textcolor{keywordtype}{bool}\ findPath(shared\_ptr<Node>\ node,\ \textcolor{keywordtype}{int}\ value,\ vector<int>\&\ path);}
+\DoxyCodeLine{00105\ \ \ \ \ }
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{keywordtype}{void}\ saveToFile(shared\_ptr<Node>\ node,\ ofstream\&\ file);}
+\DoxyCodeLine{00112\ \ \ \ \ }
+\DoxyCodeLine{00118\ \ \ \ \ \textcolor{keywordtype}{void}\ writeBinary(shared\_ptr<Node>\ node,\ ofstream\&\ out);}
+\DoxyCodeLine{00119\ \ \ \ \ }
+\DoxyCodeLine{00125\ \ \ \ \ shared\_ptr<Node>\ readBinary(ifstream\&\ in);}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00133\ \ \ \ \ \textcolor{keywordtype}{void}\ displayGraphicalTree(shared\_ptr<Node>\ node,\ \textcolor{keywordtype}{int}\ level,\ \textcolor{keywordtype}{bool}\ isLeft);}
+\DoxyCodeLine{00134\ \ \ \ \ }
+\DoxyCodeLine{00141\ \ \ \ \ \textcolor{keywordtype}{void}\ printAscii(shared\_ptr<Node>\ node,\ \textcolor{keywordtype}{string}\ prefix,\ \textcolor{keywordtype}{bool}\ isLeft);}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00143\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00148\ \ \ \ \ \mbox{\hyperlink{classBST_abc17123a0367c3b8ad0382eeb3ad3178}{BST}}()\ :\ root(nullptr)\ \{\}}
+\DoxyCodeLine{00149\ \ \ \ \ }
+\DoxyCodeLine{00154\ \ \ \ \ \mbox{\hyperlink{classBST_aff9c7948fbba37844d2893b920ddc238}{\string~BST}}()\ \{\ \mbox{\hyperlink{classBST_ac4c25c29469df59a243c920423ed6d75}{clear}}();\ \}}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00160\ \ \ \ \ \textcolor{keywordtype}{void}\ insert(\textcolor{keywordtype}{int}\ value);}
+\DoxyCodeLine{00161\ \ \ \ \ }
+\DoxyCodeLine{00166\ \ \ \ \ \textcolor{keywordtype}{void}\ remove(\textcolor{keywordtype}{int}\ value);}
+\DoxyCodeLine{00167\ \ \ \ \ }
+\DoxyCodeLine{00171\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classBST_ac4c25c29469df59a243c920423ed6d75}{clear}}();}
+\DoxyCodeLine{00172\ \ \ \ \ }
+\DoxyCodeLine{00177\ \ \ \ \ \textcolor{keywordtype}{void}\ findPath(\textcolor{keywordtype}{int}\ value);}
+\DoxyCodeLine{00178\ }
+\DoxyCodeLine{00183\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classBST_a6b6c5f11ff277a9326e750c82c69dea1}{displayGraphical}}(\textcolor{keywordtype}{int}\ mode);}
+\DoxyCodeLine{00184\ \ \ \ \ }
+\DoxyCodeLine{00190\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classBST_a397f0072516a5e34840bf6dfeadd917c}{displayGraphicalToStream}}(\textcolor{keywordtype}{int}\ mode,\ ostream\&\ out);}
+\DoxyCodeLine{00191\ \ \ \ \ }
+\DoxyCodeLine{00195\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classBST_a51394c7a9b52896618036109645505f3}{displayAscii}}();}
+\DoxyCodeLine{00196\ \ \ \ \ }
+\DoxyCodeLine{00200\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classBST_aa1f1783484dada56faeda924cb5f512b}{displayAsciiCentered}}();}
+\DoxyCodeLine{00201\ }
+\DoxyCodeLine{00206\ \ \ \ \ \textcolor{keywordtype}{void}\ saveToFile(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ filename);}
+\DoxyCodeLine{00207\ \ \ \ \ }
+\DoxyCodeLine{00214\ \ \ \ \ \textcolor{keywordtype}{void}\ saveToFile(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ filename,\ \textcolor{keywordtype}{int}\ mode,\ \textcolor{keywordtype}{bool}\ graphical);}
+\DoxyCodeLine{00215\ \ \ \ \ }
+\DoxyCodeLine{00220\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classBST_aecb3e68a662e54565d8c4fe58487c419}{loadFromTextFile}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ filename);}
+\DoxyCodeLine{00221\ }
+\DoxyCodeLine{00226\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classBST_ac515a9f67584fcd27c7ccb7d4ab80b63}{serializeBinary}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ filename);}
+\DoxyCodeLine{00227\ \ \ \ \ }
+\DoxyCodeLine{00232\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classBST_ac886cf881eaecc051a49cae027e8db59}{deserializeBinary}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ filename);}
+\DoxyCodeLine{00233\ }
+\DoxyCodeLine{00238\ \ \ \ \ vector<int>\ \mbox{\hyperlink{classBST_a9449530b4e404a9431ba529d27707e30}{inorderTraversal}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00239\ \ \ \ \ }
+\DoxyCodeLine{00244\ \ \ \ \ vector<int>\ \mbox{\hyperlink{classBST_ad2202f68ed9f21e713e07bb5c55724be}{preorderTraversal}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00245\ \ \ \ \ }
+\DoxyCodeLine{00250\ \ \ \ \ vector<int>\ \mbox{\hyperlink{classBST_ab8626803f2fd5af26a2973f219008f18}{postorderTraversal}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00251\ \};}
+\DoxyCodeLine{00252\ }
+\DoxyCodeLine{00253\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}
