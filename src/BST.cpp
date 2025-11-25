@@ -195,16 +195,126 @@ void BST::displayGraphicalTree(shared_ptr<Node> node,int level,bool isLeft){
 
 void BST::displayGraphical(int mode){ displayGraphicalToStream(mode,cout); }
 
-void BST::displayGraphicalToStream(int mode,ostream& out){
-    out<<"\n==== Drzewo graficzne ====\n";
-    if(!root){ out<<"(puste drzewo)\n"; return; }
+void BST::displayGraphicalToStream(int mode, ostream& out) {
+    out << "\n==== Drzewo graficzne ====" << endl;
+    if (!root) {
+        out << "(puste drzewo)" << endl;
+        return;
+    }
 
     vector<int> trav;
-    if(mode==1){ out<<"Preorder: "; preorderList(root,trav);}
-    else if(mode==2){ out<<"Inorder: "; inorderList(root,trav);}
-    else if(mode==3){ out<<"Postorder: "; postorderList(root,trav);}
-    for(int v:trav) out<<v<<" "; out<<"\n\n";
-    displayGraphicalTree(root,0,false);
+    if (mode == 1) {
+        preorderList(root, trav);
+        out << "Preorder: ";
+    } else if (mode == 2) {
+        inorderList(root, trav);
+        out << "Inorder: ";
+    } else if (mode == 3) {
+        postorderList(root, trav);
+        out << "Postorder: ";
+    } else {
+        out << "Traversale: ";
+    }
+
+    for (size_t i = 0; i < trav.size(); ++i) {
+        if (i) out << " ";
+        out << trav[i];
+    }
+    out << endl << endl;
+
+    // Print tree top-down with horizontal spacing.
+    unordered_map<Node*, pair<int,int>> pos; // Node* -> (x, depth)
+    unordered_map<Node*, int> centerX; // Node* -> center column (for connector placement)
+    int curX = 0;
+    int maxDepth = 0;
+
+    function<void(shared_ptr<Node>, int)> computePos = [&](shared_ptr<Node> n, int depth) {
+        if (!n) return;
+        computePos(n->left, depth + 1);
+        pos[n.get()] = {curX++, depth};
+        maxDepth = max(maxDepth, depth);
+        computePos(n->right, depth + 1);
+    };
+
+    computePos(root, 0);
+
+    if (pos.empty()) return;
+
+    int spacing = 2;
+    int rootCenter = 20;
+    centerX[root.get()] = rootCenter;
+
+    function<void(shared_ptr<Node>)> computeCenters = [&](shared_ptr<Node> n) {
+        if (!n) return;
+        int parentCenter = centerX[n.get()];
+        if (n->left) {
+            centerX[n->left.get()] = parentCenter - spacing;
+            computeCenters(n->left);
+        }
+        if (n->right) {
+            centerX[n->right.get()] = parentCenter + spacing;
+            computeCenters(n->right);
+        }
+    };
+
+    computeCenters(root);
+
+    int minCenter = std::numeric_limits<int>::max();
+    for (auto &c : centerX) minCenter = min(minCenter, c.second);
+    int padding = 2;
+    int shift = (minCenter < padding) ? (padding - minCenter) : 0;
+    for (auto &c : centerX) c.second += shift;
+
+    int maxCenter = 0;
+    for (auto &c : centerX) maxCenter = max(maxCenter, c.second);
+    int width = maxCenter + padding + 5;
+    int height = maxDepth * 2 + 1;
+
+    vector<string> rows(height, string(width, ' '));
+
+    for (auto &p : pos) {
+        Node* nptr = p.first;
+        int depth = p.second.second;
+        int cy = depth * 2;
+        string val = to_string(nptr->value);
+        int center = centerX[nptr];
+        int start = center - (int)val.length() / 2;
+        if (start < 0) start = 0;
+        if (start + (int)val.length() >= width) {
+            int extra = start + (int)val.length() - width + 1;
+            for (auto &r : rows) r += string(extra, ' ');
+            width += extra;
+        }
+        for (size_t k = 0; k < val.length(); ++k) rows[cy][start + k] = val[k];
+    }
+
+    function<void(shared_ptr<Node>)> drawConnectors = [&](shared_ptr<Node> n) {
+        if (!n) return;
+        Node* p = n.get();
+        int py = pos[p].second * 2;
+        if (n->left) {
+            int cx = centerX[n->left.get()];
+            int cy = py + 1;
+            if (cy < height && cx >= 0 && cx < (int)rows[cy].size()) rows[cy][cx] = '/';
+        }
+        if (n->right) {
+            int cx = centerX[n->right.get()];
+            int cy = py + 1;
+            if (cy < height && cx >= 0 && cx < (int)rows[cy].size()) rows[cy][cx] = '\\';
+        }
+        drawConnectors(n->left);
+        drawConnectors(n->right);
+    };
+
+    drawConnectors(root);
+
+    for (int r = 0; r < height; ++r) {
+        string &line = rows[r];
+        int end = (int)line.size() - 1;
+        while (end >= 0 && line[end] == ' ') --end;
+        if (end < 0) out << "\n";
+        else out << line.substr(0, end + 1) << endl;
+    }
 }
 
 // ======================================
